@@ -7,10 +7,12 @@ import {
 import AccountProfile from '../components/account/AccountProfile';
 import AccountProfileDetails from '../components/account/AccountProfileDetails';
 
+console.log(process.env.REACT_APP_GOOGLE_MAPS_TOKEN)
+
 const LiveMap = () => (
   <>
     <Helmet>
-      <title>LiveMap | Material Kit</title>
+      <title> Live Map | Material Kit</title>
     </Helmet>
     <Box
       sx={{
