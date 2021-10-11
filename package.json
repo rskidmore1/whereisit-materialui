@@ -9,11 +9,14 @@
     "eslint-fix": "eslint --fix ./src",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev": "npm-run-all --silent --parallel start server",
+    "server": "node server.js", 
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix"
   },
+  "proxy": "http://localhost:5000", 
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -36,9 +39,11 @@
     "@material-ui/icons": "^5.0.0-beta.5",
     "@material-ui/styles": "^5.0.0-beta.5",
     "chart.js": "^3.5.1",
+    "express": "^4.17.1",
     "formik": "^2.1.5",
     "history": "^5.0.0",
     "moment": "^2.27.0",
+    "npm-run-all": "^4.1.5",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
