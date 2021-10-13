@@ -1,4 +1,5 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
+const webpack = require('webpack');
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -20,6 +21,9 @@ const config = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
+        new webpack.ProvidePlugin({
+          "React": "react",
+       }),
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
@@ -27,17 +31,23 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/i,
+              test: /\.js$|jsx/,
+              use: {
                 loader: 'babel-loader',
+                options: {
+                  plugins: [
+                    '@babel/plugin-transform-react-jsx'
+      
+                  ]
+                }
+              }
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                 type: 'asset',
             },
-            {
-              test: /\.css$/i,
-              use: ["style-loader", "css-loader"],
-            },
+            { test: /\.css$/, use: 'css-loader' },
+         
            
 
             // Add your rules for custom modules here
