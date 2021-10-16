@@ -1,5 +1,8 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 const webpack = require('webpack');
+require('dotenv/config');
+
+
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,13 +12,18 @@ const isProduction = process.env.NODE_ENV == 'development';
 
 
 const config = {
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public'),
+ 
     },
     devServer: {
         open: true, 
         host: 'localhost',
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -24,6 +32,7 @@ const config = {
         new webpack.ProvidePlugin({
           "React": "react",
        }),
+       new webpack.EnvironmentPlugin(['GOOGLE_MAPS_TOKEN'])
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
