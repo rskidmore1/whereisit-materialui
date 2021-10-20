@@ -12,8 +12,9 @@ export default class LiveMap extends React.Component{
     super(props); 
     fetch('/api/express_backend')
     .then(res => console.log(res))
-   
-  }
+    console.log(process.env.DATABASE_URL)
+
+ }
 
   render(){
     return(

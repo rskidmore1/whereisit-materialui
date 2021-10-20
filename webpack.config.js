@@ -24,6 +24,7 @@ const config = {
         open: true, 
         host: 'localhost',
         historyApiFallback: true,
+       
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -32,7 +33,8 @@ const config = {
         new webpack.ProvidePlugin({
           "React": "react",
        }),
-       new webpack.EnvironmentPlugin(['GOOGLE_MAPS_TOKEN'])
+       new webpack.EnvironmentPlugin(['GOOGLE_MAPS_TOKEN']), 
+       new webpack.EnvironmentPlugin(['DATABASE_URL'])
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
