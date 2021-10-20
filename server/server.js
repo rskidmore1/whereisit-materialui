@@ -5,9 +5,7 @@ const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 const ClientError = require('./client-error');
-
-console.log('database url')
-console.log(process.env.DATABASE_URL)
+require('dotenv').config();
 
 
 // This displays message that the server running and listening to specified port
@@ -72,6 +70,23 @@ app.get('/api/vehicleslist', (req, res, next) => {
 
         res.json(vehicles);
       }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+app.get('/api/demoroutes', (req, res, next) => {
+
+  const sql = `
+    select "vehicleId", "demoRoute" from "vehicles";
+    `;
+
+  db.query(sql)
+    .then(results => {
+
+      res.json(results);
+
     })
     .catch(err => {
       next(err);
