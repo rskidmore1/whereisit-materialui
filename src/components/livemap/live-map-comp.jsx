@@ -6,7 +6,8 @@ class LiveMapComp extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log('hi from constructor')
+    // console.log('hi from constructor')
+    console.log('shows again after refresh')
 
     this.state = {
       isLoaded: false,
@@ -80,102 +81,83 @@ class LiveMapComp extends React.Component {
       }]
     }
 
-   fetch('/api/express_backend')
-    .then(res => res.text())
+
+    fetch('/api/demoroutes')
+    .then(res => res.json())
     .then(result => {
       console.log('from api call')
-      console.log(result)
+      console.log(result.rows[0])
+      if (!result) {
+        this.setState({ networkError: 'Results are empty.' });
+      } else {
+     
+        let routesArr = [];
+        const demoRoutesArr = [];
+        this.setState({ demoRoutesMaxCount: result.rows[0].demoRoute.gpx.trk[0].trkseg[0].trkpt.length });
+        for (let i = 0; i < result.rows.length; i++) {
+          for (let j = 0; j < result.rows[0].demoRoute.gpx.trk[0].trkseg[0].trkpt.length; j++) {
+            routesArr.push(result.rows[i].demoRoute.gpx.trk[0].trkseg[0].trkpt[j].ATTR);
+
+          }
+
+          demoRoutesArr.push(routesArr);
+          routesArr = [];
+        }
+        this.setState({ demoRoutes: demoRoutesArr, isLoaded: true });
+      }
     })
     .catch(err => {
-        console.error(err);
-      });
-
-    // fetch('/api/demoroutes')
-    // .then(res => res.text())
-    // .then(result => {
-    //   console.log('from api call')
-    //   console.log(result)
-    // })
-    // .catch(err => {
-    //     console.error(err);
-    //   });
-
-    // fetch('/api/demoroutes')
-    // .then(res => res.json())
-    // .then(result => {
-    //   console.log('from api call')
-    //   console.log(result)
-    //   if (!result) {
-    //     this.setState({ networkError: 'Results are empty.' });
-    //   } else {
-     
-    //     let routesArr = [];
-    //     const demoRoutesArr = [];
-    //     this.setState({ demoRoutesMaxCount: result.rows[0].demoRoute.gpx.trk[0].trkseg[0].trkpt.length });
-    //     for (let i = 0; i < result.rows.length; i++) {
-    //       for (let j = 0; j < result.rows[0].demoRoute.gpx.trk[0].trkseg[0].trkpt.length; j++) {
-    //         routesArr.push(result.rows[i].demoRoute.gpx.trk[0].trkseg[0].trkpt[j].ATTR);
-
-    //       }
-
-    //       demoRoutesArr.push(routesArr);
-    //       routesArr = [];
-    //     }
-    //     this.setState({ demoRoutes: demoRoutesArr, isLoaded: true });
-    //   }
-    // })
-    // .catch(err => {
-    //   this.setState({ networkError: 'Load failed. Please try again', isLoaded: true });
-    //   console.error(err);
-    // });
+      this.setState({ networkError: 'Load failed. Please try again', isLoaded: true });
+      console.error(err);
+    });
   
   
   };
 
 
-  // startVehicleUpdates() {
+  startVehicleUpdates() {
 
-  //   const timerId = setInterval(() => {
-  //     let demoCount = this.state.demoCount;
-  //     demoCount++;
-  //     this.setState({ demoCount: demoCount });
-  //     this.setState({ timerId: timerId });
-  //     const demoRoutesMaxCount = this.state.demoRoutesMaxCount;
+    const timerId = setInterval(() => {
+      let demoCount = this.state.demoCount;
+      demoCount++;
+      this.setState({ demoCount: demoCount });
+      this.setState({ timerId: timerId });
+      const demoRoutesMaxCount = this.state.demoRoutesMaxCount;
 
-  //     const updatedVehicles = this.state.vehicles.map((vehicle, index) => {
+      const updatedVehicles = this.state.vehicles.map((vehicle, index) => {
 
-  //       let timeStamp = vehicle.movedAt;
-  //       let stopped = vehicle.stopped;
+        let timeStamp = vehicle.movedAt;
+        let stopped = vehicle.stopped;
 
-  //       if (demoCount >= demoRoutesMaxCount) {
-  //         this.setState({ demoCount: 0 });
-  //       }
+        if (demoCount >= demoRoutesMaxCount) {
+          this.setState({ demoCount: 0 });
+        }
 
-  //       if (vehicle.coords.lat !== this.state.demoRoutes[index][demoCount].lat && vehicle.coords.lng !== this.state.demoRoutes[index][demoCount].lon) {
-  //         stopped = false;
-  //         timeStamp = Date.now();
-  //       } else if (timeStamp + 1000 <= Date.now()) {
-  //         stopped = true;
-  //       }
-  //       return Object.assign({}, vehicle, { coords: { lat: this.state.demoRoutes[index][demoCount].lat, lng: this.state.demoRoutes[index][demoCount].lon }, movedAt: timeStamp, stopped: stopped });
-  //     });
-  //     this.setState({ vehicles: updatedVehicles });
+        if (vehicle.coords.lat !== this.state.demoRoutes[index][demoCount].lat && vehicle.coords.lng !== this.state.demoRoutes[index][demoCount].lon) {
+          stopped = false;
+          timeStamp = Date.now();
+        } else if (timeStamp + 1000 <= Date.now()) {
+          stopped = true;
+        }
+        return Object.assign({}, vehicle, { coords: { lat: this.state.demoRoutes[index][demoCount].lat, lng: this.state.demoRoutes[index][demoCount].lon }, movedAt: timeStamp, stopped: stopped });
+      });
+      this.setState({ vehicles: updatedVehicles });
 
-  //   }, 2000
-  //   );
+    }, 2000
+    );
 
-  // }
+  }
 
   componentDidMount() {
 
-    // this.startVehicleUpdates();
-    // console.log(this.state.demoRoutes)
+    this.startVehicleUpdates();
+    console.log(this.state.demoRoutes)
    
   }
 
   componentWillUnmount() {
-    // const timerId = clearInterval(this.state.timerId);
-    // this.setState({ timerId: timerId });
+    const timerId = clearInterval(this.state.timerId);
+    this.setState({ timerId: timerId });
   }
 
 
@@ -199,7 +181,7 @@ class LiveMapComp extends React.Component {
             initialCenter={this.state.mapCenter}
             zoom={10} >
 
-            {/* {this.state.vehicles.map(vehicle =>
+            {this.state.vehicles.map(vehicle =>
 
               <Marker key={vehicle.vehicleId}
                 position={{ lat: vehicle.coords.lat, lng: vehicle.coords.lng }}
@@ -209,7 +191,7 @@ class LiveMapComp extends React.Component {
                 //   scaledSize: new window.google.maps.Size(10, 10)
                 // }}
               />
-            )} */}
+            )}
                           
            </Map >
            </div>

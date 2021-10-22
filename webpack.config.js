@@ -18,13 +18,17 @@ const config = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'public'),
+        publicPath: '/',
  
     },
     devServer: {
         open: true, 
-        host: 'localhost',
+        port: process.env.DEV_SERVER_PORT,
         historyApiFallback: true,
-       
+        proxy: {
+          '/api': `http://localhost:${process.env.PORT}`
+        }
+        
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -36,8 +40,6 @@ const config = {
        new webpack.EnvironmentPlugin(['GOOGLE_MAPS_TOKEN']), 
        new webpack.EnvironmentPlugin(['DATABASE_URL'])
 
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
     ],
     module: {
         rules: [
