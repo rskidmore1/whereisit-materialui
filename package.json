@@ -1,5 +1,5 @@
 {
-  "name": "react-material-dashboard",
+  "name": "my-webpack-project",
   "author": "DeviasIO",
   "licence": "MIT",
   "version": "1.0.0",
@@ -8,15 +8,21 @@
     "eslint": "eslint ./src",
     "eslint-fix": "eslint --fix ./src",
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "dev": "npm-run-all --silent --parallel start server",
-    "server": "node server.js", 
+    "build": "webpack --mode=production --node-env=production",
+    "dev": "npm-run-all --silent --parallel dev:start dev:server",
+    "dev:start": "webpack serve --mode=development",
+    "dev:server": "nodemon server/server.js",
+    "db:import": "bash scripts/db-import.bash",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./",
-    "lint-fix": "eslint ./ --fix"
+    "lint-fix": "eslint ./ --fix",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
   },
-  "proxy": "http://localhost:5000", 
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -39,12 +45,16 @@
     "@material-ui/icons": "^5.0.0-beta.5",
     "@material-ui/styles": "^5.0.0-beta.5",
     "chart.js": "^3.5.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "formik": "^2.1.5",
+    "google-maps-react": "^2.0.6",
     "history": "^5.0.0",
     "moment": "^2.27.0",
+    "nodemon": "^2.0.13",
     "npm-run-all": "^4.1.5",
     "nprogress": "^0.2.0",
+    "pg": "^8.7.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.4",
@@ -59,6 +69,19 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^18.2.1"
-  }
+    "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "@webpack-cli/generators": "^2.4.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.4.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1",
+    "workbox-webpack-plugin": "^6.3.0"
+  },
+  "description": "My webpack project"
 }

@@ -80,12 +80,12 @@ const items = [
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
-
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
-    }
-  }, [location.pathname]);
+    } 
+    // eslint-disable-next-line
+  }, [location.pathname]); 
 
   const content = (
     <Box
