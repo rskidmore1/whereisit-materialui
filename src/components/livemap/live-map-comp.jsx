@@ -185,11 +185,11 @@ class LiveMapComp extends React.Component {
 
               <Marker key={vehicle.vehicleId}
                 position={{ lat: vehicle.coords.lat, lng: vehicle.coords.lng }}
-                // icon={{
-                //   url: vehicle.stopped ? './images/Button_Icon_Red.svg' : './images/Green_icon.svg',
-                //   anchor: new window.google.maps.Point(10, 10),
-                //   scaledSize: new window.google.maps.Size(10, 10)
-                // }}
+                icon={{
+                  url: vehicle.stopped ? '/static/images/Button_Icon_Red.svg' : '/static/images/Green_icon.svg',
+                  anchor: new window.google.maps.Point(10, 10),
+                  scaledSize: new window.google.maps.Size(10, 10)
+                }}
               />
             )}
                           

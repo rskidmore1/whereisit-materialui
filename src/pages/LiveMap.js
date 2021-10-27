@@ -28,10 +28,14 @@ export default class LiveMap extends React.Component{
     return(
       <>
       <Helmet>
-        <title> Live Map | Material Kit</title>
+        <title> Live Map | Material Kit </title>
       </Helmet>
       
         <LiveMapComp />
+      
+
+
+        
       
     </>
     )
