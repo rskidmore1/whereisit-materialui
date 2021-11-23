@@ -84,10 +84,13 @@ const VehicleListResults = ({ vehicles, ...rest }) => {
                   Name
                 </TableCell>
                 <TableCell>
-                  Email
+                  Make
                 </TableCell>
                 <TableCell>
-                  Location
+                  Model
+                </TableCell>
+                <TableCell>
+                  Id
                 </TableCell>
 
 
@@ -97,13 +100,13 @@ const VehicleListResults = ({ vehicles, ...rest }) => {
               {vehicles.slice(0, limit).map((vehicle) => (
                 <TableRow
                   hover
-                  key={vehicle.id}
-                  selected={selectedVehicleIds.indexOf(vehicle.id) !== -1}
+                  key={vehicle.vehicleId}
+                  selected={selectedVehicleIds.indexOf(vehicle.vehicleId) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedVehicleIds.indexOf(vehicle.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, vehicle.id)}
+                      checked={selectedVehicleIds.indexOf(vehicle.vehicleId) !== -1}
+                      onChange={(event) => handleSelectOne(event, vehicle.vehicleId)}
                       value="true"
                     />
                   </TableCell>
@@ -133,6 +136,9 @@ const VehicleListResults = ({ vehicles, ...rest }) => {
                   </TableCell>
                   <TableCell>
                     {vehicle.model}
+                  </TableCell>
+                  <TableCell>
+                    {vehicle.vehicleId}
                   </TableCell>
                 </TableRow>
               ))}
