@@ -89,12 +89,8 @@ const VehicleListResults = ({ vehicles, ...rest }) => {
                 <TableCell>
                   Location
                 </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Registration date
-                </TableCell>
+
+
               </TableRow>
             </TableHead>
             <TableBody>
@@ -133,16 +129,10 @@ const VehicleListResults = ({ vehicles, ...rest }) => {
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {vehicle.email}
+                    {vehicle.make}
                   </TableCell>
                   <TableCell>
-                    {`${vehicle.address.city}, ${vehicle.address.state}, ${vehicle.address.country}`}
-                  </TableCell>
-                  <TableCell>
-                    {vehicle.phone}
-                  </TableCell>
-                  <TableCell>
-                    {moment(vehicle.createdAt).format('DD/MM/YYYY')}
+                    {vehicle.model}
                   </TableCell>
                 </TableRow>
               ))}
