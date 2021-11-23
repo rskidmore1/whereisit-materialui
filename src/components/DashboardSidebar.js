@@ -20,7 +20,8 @@ import {
   User as UserIcon,
   UserPlus as UserPlusIcon,
   Users as UsersIcon,
-  MapPin as MapPinIcon
+  MapPin as MapPinIcon, 
+  Truck as TruckIcon
 } from 'react-feather';
 import NavItem from './NavItem';
 
@@ -40,6 +41,11 @@ const items = [
     href: '/app/livemap',
     icon: MapPinIcon,
     title: 'Live Map'
+  },
+  {
+    href: '/app/vehicles',
+    icon: TruckIcon,
+    title: 'Vehicles'
   },
   {
     href: '/app/customers',

@@ -4,6 +4,7 @@ import MainLayout from './components/MainLayout';
 import Account from './pages/Account';
 import LiveMap from './pages/LiveMap';
 import CustomerList from './pages/CustomerList';
+import VehicleList from './pages/VehicleList';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
@@ -18,6 +19,7 @@ const routes = [
     children: [
       { path: 'account', element: <Account /> },
       { path: 'livemap', element: <LiveMap /> },
+      { path: 'vehicles', element: <VehicleList /> },
       { path: 'customers', element: <CustomerList /> },
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'products', element: <ProductList /> },
