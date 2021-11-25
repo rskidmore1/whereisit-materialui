@@ -5,14 +5,15 @@ import {useParams} from 'react-router-dom';
   Container,
   Grid
 } from '@material-ui/core';
-import React from 'react';
+import React  from 'react';
 import VehicleInfo from '../components/vehicleprofile/VehicleInfo';
 import VehicleInfoDetails from '../components/vehicleprofile/VehicleInfoDetails';
 
 
 export default function VehicleProfile(){
   let params = useParams();
-  return (
+
+   return (
 
      <>
     <Helmet>
@@ -36,7 +37,7 @@ export default function VehicleProfile(){
             md={6}
             xs={12}
           >
-              <VehicleInfo />
+              <VehicleInfo vehicleid={params}/>
           </Grid>
           <Grid
             item
@@ -44,7 +45,7 @@ export default function VehicleProfile(){
             md={6}
             xs={12}
           >
-              <VehicleInfoDetails />
+               <VehicleInfoDetails vehicleid={params}/>
           </Grid>
         </Grid>
       </Container>
