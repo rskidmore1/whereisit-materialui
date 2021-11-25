@@ -6,29 +6,6 @@ import vehicles from '../__mocks__/vehicles';
 
 import React from 'react';
 
-// const VehicleList = () => (
-//   <>
-//     <Helmet>
-//       <title>Vehicles | Material Kit</title>
-//     </Helmet>
-//     <Box
-//       sx={{
-//         backgroundColor: 'background.default',
-//         minHeight: '100%',
-//         py: 3
-//       }}
-//     >
-//       <Container maxWidth={false}>
-//         <VehicleListToolbar />
-//         <Box sx={{ pt: 3 }}>
-//           <VehicleListResults vehicles={vehicles} />
-//         </Box>
-//       </Container>
-//     </Box>
-//   </>
-// );
-
-// export default VehicleList;
 
 export default class VehicleList extends React.Component{
   constructor(props){
