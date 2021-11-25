@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import ProductList from './pages/ProductList';
 import Register from './pages/Register';
 import Settings from './pages/Settings';
+import VehicleProfile from './pages/VehicleProfile'
 
 const routes = [
   {
@@ -36,6 +37,14 @@ const routes = [
       { path: '404', element: <NotFound /> },
       { path: '/', element: <Navigate to="/app/dashboard" /> },
       { path: '*', element: <Navigate to="/404" /> }
+    ]
+  },
+  {
+    path: '/app/vehicles',
+    element: <MainLayout />,
+    children: [
+      { path: ':vehicleId', element: <VehicleProfile /> },
+
     ]
   }
 ];

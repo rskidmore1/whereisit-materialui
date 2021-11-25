@@ -13,7 +13,8 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
+  Typography,
+  Link
 } from '@material-ui/core';
 import getInitials from '../../utils/getInitials';
 
@@ -127,7 +128,9 @@ const VehicleListResults = ({ vehicles, ...rest }) => {
                         color="textPrimary"
                         variant="body1"
                       >
-                        {vehicle.name}
+                        <Link href={`/app/vehicles/${vehicle.vehicleId}`}>{vehicle.name}</Link>
+
+
                       </Typography>
                     </Box>
                   </TableCell>
