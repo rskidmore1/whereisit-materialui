@@ -1,28 +1,54 @@
 import { Helmet } from 'react-helmet';
-import { Box, Container } from '@material-ui/core';
 import {useParams} from 'react-router-dom';
-
-
+ import {
+  Box,
+  Container,
+  Grid
+} from '@material-ui/core';
 import React from 'react';
-
-
-// export default class VehicleProfile extends React.Component{
-
-
-// render(){
-// let params = useParams();
-//   return (
-//       <>
-
-//    {}
-//   </>
-
-//   )
-// }
-// }
+import VehicleInfo from '../components/vehicleprofile/VehicleInfo';
+import VehicleInfoDetails from '../components/vehicleprofile/VehicleInfoDetails';
 
 
 export default function VehicleProfile(){
   let params = useParams();
-  return <h2>Invoice: {params.vehicleId}</h2>;
+  return (
+
+     <>
+    <Helmet>
+        <title>Account | Material Kit | vehicle iD {params.vehicleId}</title>
+    </Helmet>
+    <Box
+      sx={{
+        backgroundColor: 'background.default',
+        minHeight: '100%',
+        py: 3
+      }}
+    >
+      <Container maxWidth="lg">
+        <Grid
+          container
+          spacing={3}
+        >
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xs={12}
+          >
+              <VehicleInfo />
+          </Grid>
+          <Grid
+            item
+            lg={8}
+            md={6}
+            xs={12}
+          >
+              <VehicleInfoDetails />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  </>
+  )
 }

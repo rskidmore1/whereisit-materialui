@@ -44,7 +44,6 @@ const routes = [
     element: <MainLayout />,
     children: [
       { path: ':vehicleId', element: <VehicleProfile /> },
-
     ]
   }
 ];
