@@ -45,6 +45,7 @@ export default class VehicleInfoDetails extends React.Component {
     fetch(`/api/vehicleinfo/${this.props.vehicleid.vehicleId}`)
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         this.setState({ vehicle: data })
       })
 
@@ -55,7 +56,7 @@ export default class VehicleInfoDetails extends React.Component {
 
 
   render(props) {
-    console.log(this.state.vehicle)
+
     return (
       <form
         autoComplete="off"
@@ -81,11 +82,11 @@ export default class VehicleInfoDetails extends React.Component {
                 <TextField
                   fullWidth
                   helperText="Please specify the first name"
-                  label="First name"
-                  name="firstName"
+                  label="Name"
+                  name="name"
                   onChange={this.handleChange}
                   required
-                  value={this.state.firstName}
+                  value={String(this.state.vehicle.name)}
                   variant="outlined"
                 />
               </Grid>
@@ -96,11 +97,11 @@ export default class VehicleInfoDetails extends React.Component {
               >
                 <TextField
                   fullWidth
-                  label="Last name"
-                  name="lastName"
+                  label="Make"
+                  name="make"
                   onChange={this.handleChange}
                   required
-                  value={this.state.lastName}
+                  value={String(this.state.vehicle.make)}
                   variant="outlined"
                 />
               </Grid>
@@ -111,11 +112,11 @@ export default class VehicleInfoDetails extends React.Component {
               >
                 <TextField
                   fullWidth
-                  label="Email Address"
-                  name="email"
+                  label="Model"
+                  name="model"
                   onChange={this.handleChange}
                   required
-                  value={this.state.email}
+                  value={String(this.state.vehicle.model)}
                   variant="outlined"
                 />
               </Grid>
@@ -126,11 +127,11 @@ export default class VehicleInfoDetails extends React.Component {
               >
                 <TextField
                   fullWidth
-                  label="Phone Number"
-                  name="phone"
+                  label="Year"
+                  name="year"
                   onChange={this.handleChange}
                   type="number"
-                  value={this.state.phone}
+                  value={String(this.state.vehicle.year)}
                   variant="outlined"
                 />
               </Grid>
@@ -141,70 +142,15 @@ export default class VehicleInfoDetails extends React.Component {
               >
                 <TextField
                   fullWidth
-                  label="Country"
-                  name="country"
+                  label="Plate"
+                  name="plate"
                   onChange={this.handleChange}
                   required
-                  value={this.state.country}
+                  value={String(this.state.vehicle.plate)}
                   variant="outlined"
                 />
               </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  label="Select State"
-                  name="state"
-                  onChange={this.handleChange}
-                  required
-                  select
-                  SelectProps={{ native: true }}
-                  value={this.state.state}
-                  variant="outlined"
-                >
-                  {states.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  label="Clearance"
-                  name="clearance"
-                  onChange={this.handleChange}
-                  required
-                  value={this.state.clearance}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  label="Handler"
-                  name="handler"
-                  onChange={this.handleChange}
-                  required
-                  value={this.state.handler}
-                  variant="outlined"
-                />
-              </Grid>
+
             </Grid>
           </CardContent>
           <Divider />
