@@ -25,12 +25,12 @@ const states = [
   }
 ];
 
-export default class VehicleInfoDetails extends React.Component {
+export default class DriverInfoDetails extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      vehicle: {},
+      driver: {},
       firstName: 'Katarina',
       lastName: 'Smith',
       email: 'demo@devias.io',
@@ -42,11 +42,12 @@ export default class VehicleInfoDetails extends React.Component {
     }
 
 
-    fetch(`/api/vehicleinfo/${this.props.vehicleid.vehicleId}`)
+
+    fetch(`/api/driverinfo/1`)
       .then(response => response.json())
       .then(data => {
         // console.log(data)
-        this.setState({ vehicle: data })
+        this.setState({ driver: data })
       })
 
   };
@@ -86,7 +87,7 @@ export default class VehicleInfoDetails extends React.Component {
                   name="name"
                   onChange={this.handleChange}
                   required
-                  value={String(this.state.vehicle.name)}
+                  value={String(this.state.driver.name)}
                   variant="outlined"
                 />
               </Grid>
@@ -97,11 +98,11 @@ export default class VehicleInfoDetails extends React.Component {
               >
                 <TextField
                   fullWidth
-                  label="Make"
-                  name="make"
+                  label="Email"
+                  name="email"
                   onChange={this.handleChange}
                   required
-                  value={String(this.state.vehicle.make)}
+                  value={String(this.state.driver.email)}
                   variant="outlined"
                 />
               </Grid>
@@ -112,44 +113,15 @@ export default class VehicleInfoDetails extends React.Component {
               >
                 <TextField
                   fullWidth
-                  label="Model"
-                  name="model"
+                  label="Phone"
+                  name="phone"
                   onChange={this.handleChange}
                   required
-                  value={String(this.state.vehicle.model)}
+                  value={String(this.state.driver.phone)}
                   variant="outlined"
                 />
               </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  label="Year"
-                  name="year"
-                  onChange={this.handleChange}
-                  type="number"
-                  value={String(this.state.vehicle.year)}
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  label="Plate"
-                  name="plate"
-                  onChange={this.handleChange}
-                  required
-                  value={String(this.state.vehicle.plate)}
-                  variant="outlined"
-                />
-              </Grid>
+
 
             </Grid>
           </CardContent>

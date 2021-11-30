@@ -94,11 +94,44 @@ app.get('/api/demoroutes', (req, res, next) => {
 });
 
 
+//
+  // Drivers
+//
+
+
+app.get('/api/driverinfo/:driverId', (req, res, next) => {
+  const driverId = parseInt(req.params.driverId, 10);
+  if (!Number.isInteger(driverId) || driverId < 1) {
+    throw new ClientError(400, 'driverId must be a positive integer');
+  }
+  const params = [driverId];
+
+  const sql = `
+    select * from "drivers"
+    where "driverId" = $1
+    `;
+  db.query(sql, params)
+    .then(results => {
+      const [driver] = results.rows;
+      if (!driver) {
+
+        throw new ClientError(404, `cannot find driverId ${driverId}`);
+      } else {
+
+        res.json(driver);
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+
+});
+
+//End drivers
+
 
 
 // create a GET route
 app.get('/api/express_backend', (req, res) => { //Line 9
   res.send({ express: process.env.DATABASE_URL }); //Line 10
 }); //Line 11
-
-

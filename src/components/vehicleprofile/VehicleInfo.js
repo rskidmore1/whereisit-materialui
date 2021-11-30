@@ -44,7 +44,7 @@ export default class VehicleInfo extends React.Component{
 
 
 render(props){
-  console.log(this.state.vehicle)
+  // console.log(this.state.vehicle)
   return(
     <Card {...props}>
       <CardContent>
