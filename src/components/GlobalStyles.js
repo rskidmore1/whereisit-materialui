@@ -25,11 +25,15 @@ const useStyles = makeStyles(() => createStyles({
     '#root': {
       height: '100%',
       width: '100%'
-    }, 
+    },
     '.map-div': {
-      height: '500px', 
-      width: '500px', 
+      height: '500px',
+      width: '500px',
       margin: '1rem'
+    },
+    '.vehicle-map-div': {
+      height: '300px',
+      width: '300px',
     }
   }
 }));

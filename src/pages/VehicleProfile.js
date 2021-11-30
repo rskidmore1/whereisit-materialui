@@ -8,7 +8,8 @@ import {useParams} from 'react-router-dom';
 import React  from 'react';
 import VehicleInfo from '../components/vehicleprofile/VehicleInfo';
 import VehicleInfoDetails from '../components/vehicleprofile/VehicleInfoDetails';
-import DriverInfoDetails from '../components/vehicleprofile/DriverInfoDetails'
+import DriverInfoDetails from '../components/vehicleprofile/DriverInfoDetails';
+import MapVehicleProfile from '../components/vehicleprofile/MapVehicleProfile';
 
 
 export default function VehicleProfile(){
@@ -32,13 +33,32 @@ export default function VehicleProfile(){
           container
           spacing={3}
         >
+        <Grid
+          item
+          lg={4}
+          md={6}
+          xs={12}
+        >
+
+              <MapVehicleProfile vehicleid={params} />
+
+        </Grid>
           <Grid
             item
             lg={4}
             md={6}
             xs={12}
           >
+
+            <Box
+              sx={{
+                width: 300,
+                height: 300
+              }}
+            >
               <VehicleInfo vehicleid={params}/>
+            </Box>
+
           </Grid>
           <Grid
             item

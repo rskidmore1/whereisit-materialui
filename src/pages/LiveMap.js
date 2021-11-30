@@ -9,7 +9,7 @@ import React from 'react'
 
 export default class LiveMap extends React.Component{
   constructor(props){
-    super(props); 
+    super(props);
     fetch('/api/express_backend')
     .then(res => res.json())
     .then(result => {
@@ -20,7 +20,7 @@ export default class LiveMap extends React.Component{
         console.error(err);
       });
 
-   
+
 
  }
 
@@ -30,13 +30,9 @@ export default class LiveMap extends React.Component{
       <Helmet>
         <title> Live Map | Material Kit </title>
       </Helmet>
-      
+
         <LiveMapComp />
-      
 
-
-        
-      
     </>
     )
   }
