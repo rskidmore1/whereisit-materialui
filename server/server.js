@@ -26,6 +26,38 @@ const jsonMiddleware = express.json();
 
 app.use(jsonMiddleware);
 
+
+//
+  //Vehicles
+//
+
+app.post('/api/vehicleinfo', (req, res, next) => {
+
+  const { name, make, model, year, color, plate } = req.body;
+  if (!name || !model) {
+    throw new ClientError(400, 'name and model are required fields');
+
+  }
+  const sql = `
+    insert into "vehicles" ("name", "make", "model", "year", "color",  "plate", "createdAt")
+        values ($1, $2, $3, $4, $5, $6, now())
+        returning *
+  `;
+
+  const params = [name, make, model, year, color, plate];
+
+  db.query(sql, params)
+    .then(result => {
+      const veh = result.rows;
+      res.json(veh);
+    })
+    .catch(err => {
+      next(err);
+    });
+
+});
+
+
 app.get('/api/vehicleinfo/:vehicleId', (req, res, next) => {
   const vehicleId = parseInt(req.params.vehicleId, 10);
   if (!Number.isInteger(vehicleId) || vehicleId < 1) {
@@ -74,6 +106,37 @@ app.get('/api/vehicleslist', (req, res, next) => {
     .catch(err => {
       next(err);
     });
+});
+
+app.put('/api/vehicleinfo/:vehicleId', (req, res, next) => {
+
+  const vehicleId = parseInt(req.params.vehicleId, 10);
+  const { name, make, model, year, plate } = req.body;
+
+  if (!Number.isInteger(vehicleId) || vehicleId < 1) {
+    throw new ClientError(400, 'vehicleId must be a positive integer');
+
+  }
+
+  const sql = `
+      update "vehicles" set
+        "name" = $1, "make" = $2,
+        "model" = $3, "year" = $4,
+        "plate" = $5
+        where "vehicleId" = $6;
+  `;
+
+  const params = [name, make, model, year, plate, vehicleId];
+
+  db.query(sql, params)
+    .then(result => {
+      const veh = result.rows;
+      res.json(veh);
+    })
+    .catch(err => {
+      next(err);
+    });
+
 });
 
 app.get('/api/demoroutes', (req, res, next) => {

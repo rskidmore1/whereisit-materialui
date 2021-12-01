@@ -51,8 +51,12 @@ export default class VehicleInfoDetails extends React.Component {
 
   };
   handleChange (event) {
-    //do make this work
+    // console.log(event)
   };
+
+  handleSubmit(event){
+    console.log(event.target)
+  }
 
 
   render(props) {
@@ -86,7 +90,9 @@ export default class VehicleInfoDetails extends React.Component {
                   name="name"
                   onChange={this.handleChange}
                   required
-                  value={String(this.state.vehicle.name)}
+                  // value={String(this.state.vehicle.name)}
+                  defaultValue={this.state.vehicle.name}
+                  // defaultValue="hello"
                   variant="outlined"
                 />
               </Grid>
@@ -164,6 +170,7 @@ export default class VehicleInfoDetails extends React.Component {
             <Button
               color="primary"
               variant="contained"
+              onClick={this.handleSubmit}
             >
               Save details
             </Button>
